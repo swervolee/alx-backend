@@ -43,5 +43,6 @@ class Server:
         Range = index_range(page, page_size)
         try:
             result = data[Range[0]: Range[1]]
+            return result
         except IndexError:
             return []

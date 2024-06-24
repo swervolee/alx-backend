@@ -36,9 +36,11 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """
+        Returns a page from the Popular baby names csv
+        """
         for i in [page, page_size]:
-            assert isinstance(i, int)
-            assert i > 0
+            assert type(i) is int and i > 0
         data = self.dataset()
         Range = index_range(page, page_size)
         try:

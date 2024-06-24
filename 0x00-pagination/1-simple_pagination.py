@@ -41,4 +41,7 @@ class Server:
             assert i > 0
         data = self.dataset()
         Range = index_range(page, page_size)
-        return data[Range[0]: Range[1]]
+        try:
+            result = data[Range[0]: Range[1]]
+        except IndexError:
+            return []

@@ -31,4 +31,4 @@ class FIFOCache(BaseCaching):
         """
         Get method
         """
-        super().get(key)
+        return self.cache_data.get(key)

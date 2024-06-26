@@ -27,9 +27,7 @@ class MRUCache(BaseCaching):
             self.cache_data[key] = item
             self.order.append(key)
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-                # Remove the least recently used item
                 lru_key = self.order.pop(0)
-                print(self.order)
                 del self.cache_data[lru_key]
                 print(f"DISCARD: {lru_key}")
 

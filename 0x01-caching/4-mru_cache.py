@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-MRU cache
+LRU cache
 """
 BaseCaching = __import__('base_caching').BaseCaching
 
 
 class MRUCache(BaseCaching):
     """
-    Most Recently Used cache
+    Least Recently Used cache
     """
 
     def __init__(self):
@@ -21,15 +21,16 @@ class MRUCache(BaseCaching):
         """
         Add item to cache
         """
-        if key is not None and item is not None:
+        if key and item:
             if key in self.cache_data:
                 self.order.remove(key)
             self.cache_data[key] = item
             self.order.append(key)
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-                mru_key = self.order.pop()
-                del self.cache_data[mru_key]
-                print(f"DISCARD: {mru_key}")
+                # Remove the least recently used item
+                lru_key = self.order.pop()
+                del self.cache_data[lru_key]
+                print(f"DISCARD: {lru_key}")
 
     def get(self, key):
         """

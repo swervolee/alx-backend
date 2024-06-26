@@ -23,7 +23,6 @@ class LIFOCache(BaseCaching):
         if key and item:
             self.cache_data[key] = item
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-                # Get the last inserted key
                 last_key = list(self.cache_data.keys())[-2]
                 del self.cache_data[last_key]
                 print(f"DISCARD: {last_key}")

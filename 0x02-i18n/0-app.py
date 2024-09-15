@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=["GET"], strict_slashes=False)
-def index():
+def index() -> Any:
     """
     Index page
     """

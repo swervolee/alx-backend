@@ -5,6 +5,7 @@ A FLASK APP
 from flask import Flask, g, request, render_template
 from flask_babel import Babel, gettext, ngettext, format_datetime
 from datetime import datetime
+from typing import Any
 
 
 app = Flask(__name__)

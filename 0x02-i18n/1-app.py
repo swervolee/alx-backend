@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-A FLASK APP
+Parametrize templates
 """
 
-from flask import Flask, g, request, render_template
-from flask_babel import Babel, gettext, ngettext, format_datetime
-from datetime import datetime
-from typing import Any
+import babel
+from flask import Flask, render_template, request
+from flask_babel import Babel
 
 app = Flask(__name__)
 babel = Babel(app)
@@ -14,7 +13,7 @@ babel = Babel(app)
 
 class Config:
     """
-    config class
+    Config class
     """
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = 'en'
@@ -24,20 +23,20 @@ class Config:
 app.config.from_object(Config)
 
 
-@babel.localselector
+@babel.localeselector
 def get_locale():
-    user = getattr(g, 'user', None)
-    if user is not None:
-        return user.locale
+    """
+     determine the best match with our supported languages.
+    """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-@app.route('/', methods=["GET"], strict_slashes=False)
-def index() -> Any:
+@app.route('/', methods=['GET'], strict_slashes=False)
+def index():
     """
-    Index page
+    hello world
     """
-    return render_template("0-index.html")
+    return render_template('3-index.html')
 
 
 if __name__ == '__main__':
